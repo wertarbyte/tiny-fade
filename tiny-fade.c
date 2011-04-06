@@ -20,13 +20,13 @@ colour target = {0,0,0};
 
 #define COLOURS 7
 colour cs[COLOURS] = {
-	{ 100, 0, 0, },
-	{ 0, 100, 0, },
-	{ 100, 100, 0, },
-	{ 0, 0, 100, },
-	{ 100, 0, 100, },
-	{ 0, 100, 100, },
-	{ 100, 100, 100, },
+	{ 255, 0, 0, },
+	{ 0, 255, 0, },
+	{ 255, 255, 0, },
+	{ 0, 0, 255, },
+	{ 255, 0, 255, },
+	{ 0, 255, 255, },
+	{ 255, 255, 255, },
 };
 
 void retarget(void) {
@@ -71,7 +71,7 @@ int main(void) {
 				output_low(PORTB, led[i]);
 			}
 		}
-		tick = (tick+1)%100;
+		tick = (tick+1)%256;
 		if (tick == 0) {
 			if (reached()) {
 				retarget();
