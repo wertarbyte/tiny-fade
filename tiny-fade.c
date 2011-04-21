@@ -9,17 +9,17 @@
 
 typedef uint8_t colour[3];
 
-const uint8_t led[3] = {
+static const uint8_t led[3] = {
 	PB0,
 	PB4,
 	PB2
 };
 
-colour current = {0,0,0};
-colour target = {0,0,0};
+static colour current = {0,0,0};
+static colour target = {0,0,0};
 
 #define COLOURS 7
-colour cs[COLOURS] = {
+static colour cs[COLOURS] = {
 	{ 255, 0, 0, },
 	{ 0, 255, 0, },
 	{ 255, 255, 0, },
@@ -29,14 +29,14 @@ colour cs[COLOURS] = {
 	{ 255, 255, 255, },
 };
 
-void retarget(void) {
+static void retarget(void) {
 	uint8_t ci = random()%COLOURS;
 	for (int i=0; i<3; i++) {
 		target[i] = cs[ci][i];
 	}
 }
 
-uint8_t reached(void) {
+static uint8_t reached(void) {
 	for (int i=0; i<3; i++) {
 		if (target[i] != current[i]) {
 			return 0;
@@ -45,7 +45,7 @@ uint8_t reached(void) {
 	return 1;
 }
 
-void approach(void) {
+static void approach(void) {
 	for (int i=0; i<3; i++) {
 		if (target[i] < current[i]) {
 			current[i]--;
